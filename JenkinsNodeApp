@@ -7,7 +7,7 @@ tools {nodejs "node"}
 stages{
        stage("Cloning Repository"){
               steps{
-                  git checkout https://github.com/ankushpatil601/nodejsassignment.git
+                  sh 'git checkout https://github.com/ankushpatil601/nodejsassignment.git'
               }
       }
       stage("Install Dependencies"){
