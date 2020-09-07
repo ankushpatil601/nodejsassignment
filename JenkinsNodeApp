@@ -7,6 +7,7 @@ tools {nodejs "node"}
 stages{
        stage("Cloning Repository"){
               steps{
+                     cleanWs()
                   git 'https://github.com/ankushpatil601/nodejsassignment.git'
               }
       }
