@@ -18,6 +18,7 @@ stages{
       stage("Testing"){
             steps{
               sh 'npm test'
+              sh 'npm run build'
             }
       }
 }
