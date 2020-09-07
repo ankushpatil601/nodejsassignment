@@ -21,7 +21,7 @@ stages{
               
             }
         }      
-       stage(creating build){
+       stage("creating build"){
               steps{
                  sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
               }
