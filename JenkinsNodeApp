@@ -32,7 +32,7 @@ stages{
         stage("Uploading to s3"){
               steps{
                       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 's3deploy', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                                sh 'aws s3 cp *.tar.gz s3://frontendbkt'
+                                sh "aws s3 cp *.tar.gz s3://frontendbkt"
                                 
                             }
                   
