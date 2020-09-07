@@ -30,7 +30,7 @@ stages{
         }
         
         stage("Uploading to s3"){
-              step([
+              steps{([
                       $class: 'S3BucketPublisher',
                       entries: [[
                           sourceFile: '*.tar.gz',
@@ -45,6 +45,7 @@ stages{
                       profileName: 's3-artifact',
                       dontWaitForConcurrentBuildCompletion: false, 
                   ])
+                  }
         }
       
 }
