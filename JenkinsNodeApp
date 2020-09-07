@@ -1,0 +1,25 @@
+pipeline{
+
+agent any 
+
+tools {nodejs "node"}
+
+stages{
+       stage("Cloning Repository"){
+              steps{
+                  git checkout https://github.com/ankushpatil601/nodejsassignment.git
+              }
+      }
+      stage("Install Dependencies"){
+            steps{
+              sh 'npm install'
+            }
+      }
+      stage("Testing"){
+            steps{
+              sh 'npm test'
+            }
+      }
+}
+
+}
