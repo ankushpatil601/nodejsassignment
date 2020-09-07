@@ -28,6 +28,24 @@ stages{
               }
               
         }
+        
+        stage("Uploading to s3"){
+              step([
+                      $class: 'S3BucketPublisher',
+                      entries: [[
+                          sourceFile: '*.tar.gz',
+                          bucket: 'frontendbkt',
+                          selectedRegion: 'ap-south-1',
+                          noUploadOnFailure: true,
+                          managedArtifacts: true,
+                          flatten: true,
+                          showDirectlyInBrowser: true,
+                          keepForever: true,
+                      ]],
+                      profileName: 's3-artifact',
+                      dontWaitForConcurrentBuildCompletion: false, 
+                  ])
+        }
       
 }
 
