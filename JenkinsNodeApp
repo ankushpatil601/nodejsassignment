@@ -31,19 +31,10 @@ stages{
         
         stage("Uploading to s3"){
               steps{
-                      $class: 'S3BucketPublisher',
-                      entries: [[
-                          sourceFile: '*.tar.gz',
-                          bucket: 'frontendbkt',
-                          selectedRegion: 'ap-south-1',
-                          noUploadOnFailure: true,
-                          managedArtifacts: true,
-                          flatten: true,
-                          showDirectlyInBrowser: true,
-                          keepForever: true,
-                      ]],
-                      profileName: 's3-artifact',
-                      dontWaitForConcurrentBuildCompletion: false, 
+                      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 's3deploy', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                                sh 'aws s3 cp *.tar.gz arn:aws:s3:::frontendbkt'
+                                
+                            }
                   
                   }
         }
