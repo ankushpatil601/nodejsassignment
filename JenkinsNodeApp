@@ -25,9 +25,17 @@ stages{
        stage("creating build"){
               steps{
                  sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
-                 sh 'aws s3 ls'
               }
               
+        }
+        
+        stage("uploading to s3"){
+               steps{
+                     withAWS(credentials: 's3deploy', region: 'ap-south-1') {
+                     sh 'aws s3 ls'
+                     }
+               }
+        
         }
         
         
