@@ -31,8 +31,8 @@ stages{
         
         stage("uploading to s3"){
                steps{
-                     withAWS(credentials: 's3deploy', region: 'ap-south-1') {
-                            sh 'aws s3 ls'
+                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 's3deploy']]) {
+                       sh 'aws s3 ls'
                      }
                }
         
