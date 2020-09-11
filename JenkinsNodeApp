@@ -32,16 +32,9 @@ stages{
         
         stage("uploading to s3"){
                steps{
-                            withAwsCli([ 
-                                     credentialsId: 'aws-key', 
-                                     defaultRegion: 'ap-south-1']) { 
-
-                                    sh ''' 
-                                       # COPY CREATED WAR FILE TO AWS S3
-                                       # aws s3 cp target/petclinic.war s3://cloudbees-aws-demo/petclinic.war
-                                       aws s3 ls
-                                    '''
-                                   }
+                            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-user', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                         sh 'aws s3 ls'
+                     }
                }
         
         }
