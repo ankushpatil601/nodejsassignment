@@ -33,13 +33,10 @@ stages{
         
         stage("uploading to s3"){
                steps{
-                 #  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 's3deploy', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                  #       sh 'aws s3 ls'
-                         
-                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 's3deploy', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 's3deploy', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                                    AWS("--region=ap-south-1 s3 ls")
                                    }
-               #             }
+              
                }
         
         }
