@@ -15,6 +15,7 @@ stages{
       stage("Install Dependencies"){
             steps{
               sh 'npm install'
+              sh 'npm build'
             }
       }
       stage("Testing"){
@@ -25,8 +26,8 @@ stages{
         }      
        stage("creating build"){
               steps{
-                 sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
-                 sh 'ls -ltr'
+                 #sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
+                 #sh 'ls -ltr'
               }
               
         }
@@ -35,7 +36,7 @@ stages{
                steps{
                           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ankushcred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
-                          sh 'aws s3 cp *.tar.gz s3://frontendbkt'
+                          sh 'aws s3 cp * s3://frontendbkt'
                      }
                }
         
