@@ -15,7 +15,7 @@ stages{
       stage("Install Dependencies"){
             steps{
               sh 'npm install'
-              sh 'npm run build'
+              //sh 'npm run build'
             }
       }
       stage("Testing"){
@@ -28,7 +28,7 @@ stages{
               steps{
                  //sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
                  sh 'ls -ltr'
-                 
+                 sh 'npm start'
               }
               
         }
