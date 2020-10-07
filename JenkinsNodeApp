@@ -28,7 +28,7 @@ stages{
               steps{
                  //sh 'tar -cvzf nodejsapp-$BUILD_NUMBER.tar.gz .'
                  sh 'ls -ltr'
-                 sh 'npm start'
+                 
               }
               
         }
@@ -37,7 +37,7 @@ stages{
                steps{
                           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'ankushcred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
-                          sh 'aws s3 cp . s3://frontendbkt'
+                          sh 'aws s3 cp * s3://frontendbkt'
                      }
                }
         
